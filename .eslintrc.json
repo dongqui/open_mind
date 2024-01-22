@@ -1,0 +1,9 @@
+{
+  "extends": ["airbnb", "eslint:recommended", "prettier", "plugin:react/recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "import/no-unresolved": "off",
+    "no-undef": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
