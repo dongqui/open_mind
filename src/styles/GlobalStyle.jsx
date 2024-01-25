@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: Pretendard;
     margin: 0 auto;
+    color: var(--Grayscale-60, #000);
   }
 
   #root {
@@ -22,6 +23,12 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
   }
 
+  button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+  }
   :root {
     /* Color */
     --color-grayscale-10: #FFFFFF;
