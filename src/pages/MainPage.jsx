@@ -1,10 +1,31 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import OutlinedButton from '../components/Buttons/OutlinedButton';
 import Input from '../components/Input';
+import { useUser } from '../contexts/userContext';
+import usePostUser from '../hooks/usePostUser';
 
 export default function MainPage() {
+  const { getExistUser, addUser } = useUser();
+  const [userName, setUserName] = useState();
+  const { isLoading, postUser } = usePostUser();
+  const navigate = useNavigate();
+
+  const handleOnChange = (e) => setUserName(e.currentTarget.value);
+  const handeSubmit = async (e) => {
+    e.preventDefault();
+    const existUser = getExistUser(userName);
+    if (existUser) {
+      navigate(`/post/${existUser.id}/answer`);
+    } else {
+      const newUser = await postUser(userName);
+      addUser(newUser);
+      navigate(`/post/${newUser.id}/answer`);
+    }
+  };
+
   return (
     <S.Container>
       <S.Wrapper>
@@ -15,9 +36,9 @@ export default function MainPage() {
           </Link>
         </S.ButtonWrapper>
 
-        <S.Form>
-          <Input onChange={() => {}} placeholder="이름을 입력하세요" prefix={<img src="/assets/images/personIcon.svg" alt="person icon" />} />
-          <OutlinedButton fulled onClick={() => {}}>
+        <S.Form onSubmit={handeSubmit}>
+          <Input onChange={handleOnChange} placeholder="이름을 입력하세요" prefix={<img src="/assets/images/personIcon.svg" alt="person icon" />} />
+          <OutlinedButton fulled disabled={isLoading} type="submit">
             질문 받기
           </OutlinedButton>
         </S.Form>
@@ -26,7 +47,7 @@ export default function MainPage() {
   );
 }
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100%;
   height: 100%;
   background-color: var(--Grayscale-20, #f9f9f9);
