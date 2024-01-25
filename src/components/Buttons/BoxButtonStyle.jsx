@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const BoxButton = styled.button`
-  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
