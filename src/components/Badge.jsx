@@ -6,7 +6,7 @@ const Badge = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background: var(--Grayscale-10, #fff);
+  background-color: var(--Grayscale-10, #fff);
 
   color: ${(props) => (props.color === 'brown' ? 'var(--Brown-40)' : 'var(--Grayscale-40)')};
   border: 1px solid ${(props) => (props.color === 'brown' ? 'var(--Brown-40)' : 'var(--Grayscale-40)')};

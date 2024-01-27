@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Pretendard;
     margin: 0 auto;
     color: var(--Grayscale-60, #000);
+    font-size: 1.6rem;
   }
 
   #root {
@@ -31,22 +32,22 @@ const GlobalStyle = createGlobalStyle`
   }
   :root {
     /* Color */
-    --color-grayscale-10: #FFFFFF;
-    --color-grayscale-20: #F9F9F9;
-    --color-grayscale-30: #CFCFCF;
-    --color-grayscale-40: #818181;
-    --color-grayscale-50: #515151;
-    --color-grayscale-60: #000000;
+    --Grayscale-10: #FFFFFF;
+    --Grayscale-20: #F9F9F9;
+    --Grayscale-30: #CFCFCF;
+    --Grayscale-40: #818181;
+    --Grayscale-50: #515151;
+    --Grayscale-60: #000000;
 
-    --color-brown-10: #F5F1EE;
-    --color-brown-20: #E4D5C9;
-    --color-brown-30: #C7BBB5;
-    --color-brown-40: #542F1A;
-    --color-brown-50: #341909;
+    --Brown-10: #F5F1EE;
+    --Brown-20: #E4D5C9;
+    --Brown-30: #C7BBB5;
+    --Brown-40: #542F1A;
+    --Brown-50: #341909;
 
-    --color-blue-50: #1877F2;
-    --color-yellow-50: #FEE500;
-    --color-red-50: #B93333;
+    --Blue-50: #1877F2;
+    --Yellow-50: #FEE500;
+    --Red-50: #B93333;
 
     /* Font Size */
     --font-h1: 40px;
