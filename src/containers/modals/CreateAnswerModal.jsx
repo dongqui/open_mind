@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-import Modal from '../../components/Modal';
-import Avatar from '../../components/Avatar';
-import Text from '../../components/Text';
-import Row from '../../components/Row';
-import TextButton from '../../components/Buttons/TextButton';
-import Space from '../../components/Space';
-import Textarea from '../../components/Textarea';
-import FilledButton from '../../components/Buttons/FilledButton';
-import { usePostQuestion } from '../../hooks/questionsHooks';
-import { useSubject } from '../../hooks/useSubject';
+import Modal from 'components/Modal';
+import Avatar from 'components/Avatar';
+import Text from 'components/Text';
+import Row from 'components/Row';
+import TextButton from 'components/Buttons/TextButton';
+import Space from 'components/Space';
+import Textarea from 'components/Textarea';
+import FilledButton from 'components/Buttons/FilledButton';
+import { usePostQuestion } from 'hooks/questionsHooks';
+import { useSubject } from 'hooks/useSubject';
 
 export default function CreateAnswerModal({ onClose }) {
   const { isLoading, postQuestion } = usePostQuestion();

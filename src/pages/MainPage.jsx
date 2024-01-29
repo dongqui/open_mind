@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import OutlinedButton from '../components/Buttons/OutlinedButton';
-import Input from '../components/Input';
-import { useUser } from '../contexts/userContext';
-import usePostUser from '../hooks/usePostUser';
+import OutlinedButton from 'components/Buttons/OutlinedButton';
+import Input from 'components/Input';
+import { useUser } from 'contexts/userContext';
+import usePostUser from 'hooks/usePostUser';
 
 export default function MainPage() {
   const { getExistUser, addUser } = useUser();

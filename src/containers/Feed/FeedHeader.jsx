@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Avatar from '../../components/Avatar';
-import Text from '../../components/Text';
-import Row from '../../components/Row';
+import Avatar from 'components/Avatar';
+import Text from 'components/Text';
+import Row from 'components/Row';
 
 export default function FeedHeader({ subjectName, subjectImage }) {
   return (

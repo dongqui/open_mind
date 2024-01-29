@@ -1,13 +1,12 @@
-import styled from 'styled-components';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import FeedContainer from '../containers/Feed/FeedContainer';
-import Space from '../components/Space';
-import FloatingButton from '../components/Buttons/FloatingButton';
-import CreateAnswerModal from '../containers/modals/CreateAnswerModal';
-import { useGetSubject } from '../hooks/useSubject';
-import FeedHeader from '../containers/Feed/FeedHeader';
+import FeedContainer from 'containers/Feed/FeedContainer';
+import Space from 'components/Space';
+import FloatingButton from 'components/Buttons/FloatingButton';
+import CreateAnswerModal from 'containers/modals/CreateAnswerModal';
+import { useGetSubject } from 'hooks/useSubject';
+import FeedHeader from 'containers/Feed/FeedHeader';
 
 export default function QuestionPage() {
   const [showCreateAnswerModal, setShowCreateAnswerModal] = useState(false);

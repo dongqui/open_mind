@@ -1,21 +1,24 @@
 import styled from 'styled-components';
 
-import Row from '../../components/Row';
-import Text from '../../components/Text';
+import Row from 'components/Row';
+import Text from 'components/Text';
 import QuestionFeed from './QuestionFeed';
 import AnswerFeed from './AnswerFeed.jsx';
-import { useQuestionsOnInfiniteScroll } from '../../hooks/questionsHooks';
+import { useQuestionsOnInfiniteScroll } from 'hooks/questionsHooks';
 
 export default function FeedContainer({ subjectId, feedType }) {
   const { bottomRef, questions } = useQuestionsOnInfiniteScroll(subjectId);
 
+  const FeedComponent = feedType === 'question' ? QuestionFeed : AnswerFeed;
   return (
     <Container>
       <Row $gap={8}>
         <img src="/assets/images/message-icon.svg" alt="message-icon" />
         <Text typhography="body-1-bold">{questions?.length}개의 질문이 있습니다</Text>
       </Row>
-      {questions?.map((question) => (feedType === 'question' ? <QuestionFeed key={question.id} question={question} /> : <AnswerFeed key={question.id} question={question} />))}
+      {questions?.map((question) => (
+        <FeedComponent key={question.id} question={question} />
+      ))}
       <div ref={bottomRef} />
     </Container>
   );

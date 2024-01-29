@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import FeedContainer from '../containers/Feed/FeedContainer';
-import Space from '../components/Space';
-import { useGetSubject } from '../hooks/useSubject';
-import FeedHeader from '../containers/Feed/FeedHeader';
+import FeedContainer from 'containers/Feed/FeedContainer';
+import Space from 'components/Space';
+import { useGetSubject } from 'hooks/useSubject';
+import FeedHeader from 'containers/Feed/FeedHeader';
 
 export default function AnswerPage() {
   const { subjectId } = useParams();

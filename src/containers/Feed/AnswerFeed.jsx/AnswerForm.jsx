@@ -13,6 +13,7 @@ export default function AnswerForm({ previousContent = '' }) {
   const handleClick = () => {
     setEditingAnswerId(null);
   };
+
   return (
     <Column $gap={8} $fulled>
       <Textarea placeholder="답변을 입력해주세요" rows={7} onChange={handleChange} />

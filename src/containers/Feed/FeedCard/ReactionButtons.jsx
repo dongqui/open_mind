@@ -1,6 +1,6 @@
-import { ThumbDownIcon, ThumbUpIcon } from '../../../components/Icons';
-import Row from '../../../components/Row';
-import Text from '../../../components/Text';
+import { ThumbDownIcon, ThumbUpIcon } from 'components/Icons';
+import Row from 'components/Row';
+import Text from 'components/Text';
 
 export default function ReactionButtons({ likeCount, disLikeCount }) {
   return (
