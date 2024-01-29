@@ -12,6 +12,7 @@
     "no-underscore-dangle": "off",
     "react/jsx-no-bind": "off",
     "react/button-has-type": "off",
-    "control-has-associated-label": "off"
+    "control-has-associated-label": "off",
+    "consistent-return": "off"
   }
 }
