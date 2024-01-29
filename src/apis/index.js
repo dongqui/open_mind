@@ -26,3 +26,13 @@ export async function getSubjectApi(subjectId) {
   const response = await axios.get(`/subjects/${subjectId}/`);
   return response.data;
 }
+
+export async function deleteQuestionApi(questionId) {
+  const response = await axios.delete(`/questions/${questionId}/`);
+  return response.data;
+}
+
+export async function putAnswerApi({ answerId, content = '', isRejected = false }) {
+  const response = await axios.put(`answers/${answerId}/`, { content, isRejected });
+  return response.data;
+}

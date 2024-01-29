@@ -9,7 +9,7 @@ import usePostUser from '../hooks/usePostUser';
 
 export default function MainPage() {
   const { getExistUser, addUser } = useUser();
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState('');
   const { isLoading, postUser } = usePostUser();
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ export default function MainPage() {
 
         <Form onSubmit={handeSubmit}>
           <Input onChange={handleOnChange} placeholder="이름을 입력하세요" prefix={<img src="/assets/images/personIcon.svg" alt="person icon" />} />
-          <OutlinedButton fulled disabled={isLoading} type="submit">
+          <OutlinedButton fulled disabled={isLoading || !userName} type="submit">
             질문 받기
           </OutlinedButton>
         </Form>

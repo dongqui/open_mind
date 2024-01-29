@@ -1,23 +1,22 @@
+import Row from 'components/Row';
+import AnswerDropdown from 'containers/Dropdowns/AnswerDropdwon';
+import useEditingAnswerId from 'hooks/useEditingAnswerId';
 import FeedCard from '../FeedCard';
 import Answer from '../Answer';
-import Row from '../../../components/Row';
-import Dropdown from '../../../components/Dropdown/Dropdown';
+import AnswerForm from './AnswerForm';
 
 export default function AnswerFeed({ question }) {
+  const [editingId] = useEditingAnswerId();
+  const showAnswerForm = !question.answer || editingId === question.id;
+
   return (
     <FeedCard>
       <Row $justifyContent="space-between" $fulled>
         <FeedCard.Badge hasAnswer={question.answer} />
-        <Dropdown>
-          <Dropdown.Header>케밥</Dropdown.Header>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => alert('수정해')}>수정하기</Dropdown.Item>
-            <Dropdown.Item>삭제하기</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <AnswerDropdown questionId={question.id} answerId={question?.answer?.id} />
       </Row>
       <FeedCard.Question content={question.content} createdAt={question.createdAt} />
-      {question.answer && <Answer content={question.answer.content} />}
+      {showAnswerForm ? <Answer content={question?.answer?.content} /> : <AnswerForm previousContent={question.answer} />}
       <FeedCard.Footer likeCount={question.like} disLikeCount={question.disLike} />
     </FeedCard>
   );

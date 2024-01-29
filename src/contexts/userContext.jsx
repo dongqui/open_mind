@@ -1,28 +1,28 @@
-import { useState, createContext, useEffect, useContext, useMemo } from 'react';
+import { useState, createContext, useEffect, useContext, useMemo, useRef } from 'react';
 
 const UserContext = createContext({
-  userList: [],
+  user: null,
 });
 
 export function UserProvider({ children }) {
-  const [userList, setUserList] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
+  const userListRef = useRef([]);
 
   useEffect(() => {
-    const rawUser = localStorage.getItem('userList');
-    setUserList(JSON.parse(rawUser || '[]'));
+    const rawUserList = localStorage.getItem('userList');
+    userListRef.current = JSON.parse(rawUserList || '[]');
   }, []);
 
   function getExistUser(name) {
-    return userList.find((user) => user.name === name);
+    return userListRef.current.find((user) => user.name === name);
   }
 
   function addUser(user) {
-    const newUserList = [...userList, user];
-    setUserList(newUserList);
-    localStorage.setItem('userList', JSON.stringify(newUserList));
+    localStorage.setItem('userList', JSON.stringify([...userListRef.current, user]));
+    setCurrentUser(user);
   }
 
-  const contextValue = useMemo(() => ({ userList, getExistUser, addUser }), [userList]);
+  const contextValue = useMemo(() => ({ user: currentUser, getExistUser, addUser }), [currentUser]);
 
   return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 }

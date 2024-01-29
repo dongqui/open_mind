@@ -20,7 +20,9 @@ const Button = styled(BoxButton)`
   color: var(--Grayscale-10, #fff);
 
   &:hover {
-    border: 2px solid var(--Brown-50, #341909);
+    &:not(:disabled) {
+      border: 2px solid var(--Brown-50, #341909);
+    }
   }
 
   &:active {
@@ -29,5 +31,6 @@ const Button = styled(BoxButton)`
 
   &:disabled {
     background: var(--Brown-30, #c7bbb5);
+    cursor: default;
   }
 `;
