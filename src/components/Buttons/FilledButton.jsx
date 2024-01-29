@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { BUTTON_SIZES } from '../../constants';
 import BoxButton from './BoxButtonStyle';
 
-export default function FilledButton({ size = 'medium', children, prefix, suffix, fulled }) {
+export default function FilledButton({ size = 'medium', children, prefix, suffix, fulled, ...rest }) {
   const $size = BUTTON_SIZES[size];
 
   return (
-    <Button $size={$size} $fulled={fulled}>
+    <Button $size={$size} $fulled={fulled} {...rest}>
       {prefix}
       {children}
       {suffix}

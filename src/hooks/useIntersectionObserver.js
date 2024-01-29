@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-
-export default function useInfiniteScroll(callback) {
+export default function useIntersectionObserver(options) {
   const bottomElementRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
@@ -10,11 +9,9 @@ export default function useInfiniteScroll(callback) {
       const element = bottomElementRef.current;
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            callback();
-          }
+          setIsIntersecting(entry.isIntersecting);
         });
-      });
+      }, options);
 
       observer.observe(element);
 
@@ -24,7 +21,7 @@ export default function useInfiniteScroll(callback) {
         }
       };
     }
-  }, [callback]);
+  }, [options]);
 
-  return [isIntersecting, setIsIntersecting];
+  return [bottomElementRef, isIntersecting, setIsIntersecting];
 }

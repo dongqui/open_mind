@@ -27,23 +27,23 @@ export default function MainPage() {
   };
 
   return (
-    <S.Container>
-      <S.Wrapper>
-        <S.Logo src="/assets/images/logo.png" alt="logo-imgage" />
-        <S.ButtonWrapper>
+    <Container>
+      <Wrapper>
+        <Logo src="/assets/images/logo.png" alt="logo-imgage" />
+        <ButtonWrapper>
           <Link to="/list">
             <OutlinedButton>질문하러 가기</OutlinedButton>
           </Link>
-        </S.ButtonWrapper>
+        </ButtonWrapper>
 
-        <S.Form onSubmit={handeSubmit}>
+        <Form onSubmit={handeSubmit}>
           <Input onChange={handleOnChange} placeholder="이름을 입력하세요" prefix={<img src="/assets/images/personIcon.svg" alt="person icon" />} />
           <OutlinedButton fulled disabled={isLoading} type="submit">
             질문 받기
           </OutlinedButton>
-        </S.Form>
-      </S.Wrapper>
-    </S.Container>
+        </Form>
+      </Wrapper>
+    </Container>
   );
 }
 
@@ -94,11 +94,3 @@ const Form = styled.form`
   border-radius: 16px;
   background: var(--Grayscale-10, #fff);
 `;
-
-const S = {
-  Container,
-  ButtonWrapper,
-  Wrapper,
-  Logo,
-  Form,
-};
