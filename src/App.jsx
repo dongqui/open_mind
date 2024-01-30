@@ -5,6 +5,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import MainPage from './pages/MainPage';
 import QuestionPage from './pages/QuestionPage';
 import AnswerPage from './pages/AnswerPage';
+import ListPage from 'pages/ListPage';
 import { UserProvider } from './contexts/userContext';
 import Layout from './layouts';
 
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" exact element={<MainPage />} />
               <Route path="/post/:subjectId" exact element={<QuestionPage />} />
               <Route path="/post/:subjectId/answer" exact element={<AnswerPage />} />
+              <Route path="/list" exact element={<ListPage />} />
             </Routes>
           </BrowserRouter>
         </UserProvider>

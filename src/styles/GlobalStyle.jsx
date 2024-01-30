@@ -71,5 +71,14 @@ const GlobalStyle = createGlobalStyle`
     --shadow-3pt: 0px 16px 20px 0px rgba(48, 48, 48, 0.62);
 
   }
+
+  ul, li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit
+  }
 `;
 export default GlobalStyle;

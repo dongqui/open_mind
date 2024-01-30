@@ -11,10 +11,10 @@ function Dropdown({ children }) {
 }
 
 function DropdownHeader({ children }) {
-  const [_, setIsOpen] = useDropdown();
+  const [isOpen, setIsOpen] = useDropdown();
 
   return (
-    <button onClick={() => setIsOpen(true)} onBlur={() => setTimeout(() => setIsOpen(false), 100)}>
+    <button onClick={() => setIsOpen(!isOpen)} onBlur={() => setTimeout(() => setIsOpen(false), 100)}>
       {children}
     </button>
   );
@@ -28,10 +28,8 @@ const Container = styled.div`
   position: relative;
 `;
 
-const DropdownMenuStyle = styled.div`
-  width: 110px;
-  display: flex;
-  flex-direction: column;
+const DropdownMenuStyle = styled.ul`
+
   position: absolute;
   overflow: hidden;
   border-radius: 8px;
@@ -40,18 +38,16 @@ const DropdownMenuStyle = styled.div`
   box-shadow: var(--Shadow-1pt);
 `;
 
-const DropdownItem = styled.button`
-  width: 100%;
-  display: flex;
-  align-items: center;
+const DropdownItem = styled.li`
+  width: 100%;  
+  min-width: max-content;
   font-weight: 500;
   line-height: 18px;
   padding: 6px 16px;
   background: var(--Grayscale-10);
   color: var(--Grayscale-50);
-  border: none;
   gap: 8px;
-
+  cursor: pointer;
   &:disabled {
     cursor: default;
     color: var(--Grayscale-40);

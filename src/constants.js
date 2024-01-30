@@ -4,6 +4,7 @@ export const BUTTON_SIZES = {
 };
 
 export const TYPHOGRAPYS = {
+  h1: `font-size: 40px; font-weight: 400; line-height: normal;`,
   h2: `font-size: 32px; font-weight: 400;`,
   'caption-1-m': 'font-size: 14px; font-weight: 500; line-height: 18px;',
   'body-1-bold': 'font-size: 20px; line-height: 25px;',
