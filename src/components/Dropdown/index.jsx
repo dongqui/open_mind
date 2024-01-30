@@ -52,9 +52,16 @@ const DropdownItem = styled.button`
   border: none;
   gap: 8px;
 
+  &:disabled {
+    cursor: default;
+    color: var(--Grayscale-40);
+  }
+
   &:hover {
-    color: var(--Grayscale-60);
-    background: var(--Grayscale-20);
+    &:not(:disabled) {
+      color: var(--Grayscale-60);
+      background: var(--Grayscale-20);
+    }
   }
 
   &.selected {

@@ -1,15 +1,21 @@
-import Dropdown from 'components/Dropdown/Dropdown';
+import Dropdown from 'components/Dropdown';
 
 import useEditingAnswerId from 'hooks/useEditingAnswerId';
-import { putAnswerApi } from 'apis';
+import { useQuestiuons } from 'hooks/questionsHooks';
+import { putAnswerApi, deleteAnswerApi } from 'apis';
 
 export default function AnswerDropdown({ questionId, answerId }) {
   const [_, setEditingAnswerId] = useEditingAnswerId();
+  const { updateQuestion } = useQuestiuons();
 
   const handleClickModify = () => setEditingAnswerId(answerId);
-  const handleClickDelete = () => {};
+  const handleClickDelete = async () => {
+    await deleteAnswerApi(answerId);
+    updateQuestion(questionId, { answer: null });
+  };
   const handleClickReject = async () => {
-    await putAnswerApi({ answerId, isRejected: true });
+    const newAnswer = await putAnswerApi({ answerId, isRejected: true, content: '답변 거절' });
+    updateQuestion(questionId, { answer: newAnswer });
   };
 
   return (
@@ -18,9 +24,15 @@ export default function AnswerDropdown({ questionId, answerId }) {
         <img src="/assets/images/more-icon.svg" alt="more-icon" />
       </Dropdown.Header>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={handleClickModify}>수정하기</Dropdown.Item>
-        <Dropdown.Item onClick={handleClickDelete}>삭제하기</Dropdown.Item>
-        <Dropdown.Item onClick={handleClickReject}>거절하기</Dropdown.Item>
+        <Dropdown.Item onClick={handleClickModify} disabled={!answerId}>
+          수정하기
+        </Dropdown.Item>
+        <Dropdown.Item onClick={handleClickDelete} disabled={!answerId}>
+          삭제하기
+        </Dropdown.Item>
+        <Dropdown.Item onClick={handleClickReject} disabled={!answerId}>
+          거절하기
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

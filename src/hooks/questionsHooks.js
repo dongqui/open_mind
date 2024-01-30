@@ -1,5 +1,6 @@
 import { atom, useRecoilState } from 'recoil';
 import { useEffect, useRef, useState } from 'react';
+import { produce } from 'immer';
 
 import useIntersectionObserver from './useIntersectionObserver';
 import { getQuestionsApi, fetchNext, postQuestionApi } from '../apis';
@@ -9,13 +10,27 @@ const questionsAtom = atom({
   default: [],
 });
 
-export function useQuestiuonsState() {
-  return useRecoilState(questionsAtom);
+export function useQuestiuons() {
+  const [questions, setQuestions] = useRecoilState(questionsAtom);
+
+  function updateQuestion(questionId, questionData) {
+    const updatedQuestions = produce(questions, (draft) => {
+      const question = draft.find((question) => question.id === questionId);
+      Object.assign(question, questionData);
+    });
+    setQuestions(updatedQuestions);
+  }
+
+  return {
+    questions,
+    setQuestions,
+    updateQuestion,
+  };
 }
 
 export function usePostQuestion() {
   const [isLoading, setIsLoading] = useState(false);
-  const [questions, setQuestions] = useQuestiuonsState();
+  const { questions, setQuestions } = useQuestiuons();
 
   async function postQuestion(subjectId, content) {
     setIsLoading(true);
@@ -28,7 +43,7 @@ export function usePostQuestion() {
 }
 
 export function useQuestionsOnInfiniteScroll(subjectId) {
-  const [questions, setQuestions] = useQuestiuonsState();
+  const { questions, setQuestions } = useQuestiuons();
   const [bottomRef, isIntersecting] = useIntersectionObserver({});
   const nextURLRef = useRef(null);
 

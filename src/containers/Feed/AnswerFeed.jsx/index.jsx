@@ -6,7 +6,7 @@ import AnswerForm from './AnswerForm';
 
 export default function AnswerFeed({ question }) {
   const [editingId] = useEditingAnswerId();
-  const showAnswerForm = !question.answer || editingId === question.id;
+  const showAnswerForm = question?.answer === null || question?.answer?.id === editingId;
 
   return (
     <FeedCard>
@@ -15,8 +15,12 @@ export default function AnswerFeed({ question }) {
         <AnswerDropdown questionId={question.id} answerId={question?.answer?.id} />
       </Row>
       <FeedCard.Question content={question.content} createdAt={question.createdAt} />
-      {showAnswerForm ? <FeedCard.Answer content={question?.answer?.content} /> : <AnswerForm previousContent={question.answer} />}
-      <FeedCard.Footer likeCount={question.like} disLikeCount={question.disLike} />
+      {showAnswerForm ? (
+        <AnswerForm previousContent={question?.answer?.content} questionId={question.id} answerId={question?.answer?.id} />
+      ) : (
+        <FeedCard.Answer content={question?.answer?.content} isRejected={question?.answer?.isRejected} />
+      )}
+      <FeedCard.Footer likeCount={question.like} dislikeCount={question.dislike} questionId={question.id} />
     </FeedCard>
   );
 }

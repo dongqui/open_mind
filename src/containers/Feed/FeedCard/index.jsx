@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import Row from 'components/Row';
+import Avatar from 'components/Avatar';
+import ReactionButtons from './ReactionButtons';
 import { useSubject } from 'hooks/useSubject';
 import Hr from 'components/Hr';
 import Column from 'components/Column';
 import Text from 'components/Text';
 import Badge from 'components/Badge';
-import ReactionButtons from './ReactionButtons';
 import { weeksAgoFormat } from 'utils/timeFormat';
 
 const FeedCard = styled.div`
@@ -37,7 +39,7 @@ function Question({ content, createdAt }) {
   );
 }
 
-function Answer({ content }) {
+function Answer({ content, isRejected }) {
   const [subject] = useSubject();
   return (
     <Row $gap={12} $alignItems="start">
@@ -49,17 +51,19 @@ function Answer({ content }) {
             2주전
           </Text>
         </Row>
-        <Text typhography="body-2-bold">{content}</Text>
+        <Text typhography="body-3-regular" color={isRejected ? 'red50' : ''}>
+          {content}
+        </Text>
       </Column>
     </Row>
   );
 }
 
-function FeedFooter({ likeCount, disLikeCount }) {
+function FeedFooter({ likeCount, dislikeCount, questionId }) {
   return (
     <>
       <Hr />
-      <ReactionButtons likeCount={likeCount} disLikeCount={disLikeCount} />
+      <ReactionButtons likeCount={likeCount} dislikeCount={dislikeCount} questionId={questionId} />
     </>
   );
 }

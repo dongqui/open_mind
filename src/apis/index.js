@@ -27,12 +27,22 @@ export async function getSubjectApi(subjectId) {
   return response.data;
 }
 
-export async function deleteQuestionApi(questionId) {
-  const response = await axios.delete(`/questions/${questionId}/`);
+export async function deleteAnswerApi(answerId) {
+  const response = await axios.delete(`/answers/${answerId}/`);
   return response.data;
 }
 
 export async function putAnswerApi({ answerId, content = '', isRejected = false }) {
   const response = await axios.put(`answers/${answerId}/`, { content, isRejected });
+  return response.data;
+}
+
+export async function postAnswerApi({ questionId, content = '', isRejected = false }) {
+  const response = await axios.post(`questions/${questionId}/answers/`, { content, isRejected });
+  return response.data;
+}
+
+export async function postReactionApi(questionId, type) {
+  const response = await axios.post(`questions/${questionId}/reaction/`, { type });
   return response.data;
 }
