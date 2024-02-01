@@ -10,12 +10,12 @@ import Space from 'components/Space';
 import Textarea from 'components/Textarea';
 import FilledButton from 'components/Buttons/FilledButton';
 import { usePostQuestion } from 'hooks/questionsHooks';
-import { useSubject } from 'hooks/useSubject';
+import { useSubject } from 'contexts/subjectContext';
 
 export default function CreateAnswerModal({ onClose }) {
   const { isLoading, postQuestion } = usePostQuestion();
   const [content, setContent] = useState('');
-  const [subject] = useSubject();
+  const { subject } = useSubject();
 
   const handleChange = (e) => setContent(e.currentTarget.value);
   const handleClick = async () => {

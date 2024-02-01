@@ -1,47 +1,53 @@
-import styled from "styled-components";
-import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import { useEffect } from 'react';
 
-import Row from "./Row";
+import usePagination from 'hooks/usePagenation';
+import Row from './Row';
 
-export default function Pagination({ itemCount, bundle=5, initPage=1, onChange }) {
-  const [currentPage, setCurrentPage] = useState(initPage);
-  const lastPage = Math.ceil(itemCount / bundle);
-  const bundleCount = Math.ceil(currentPage / bundle) - 1;
-  const pages = new Array(bundle).fill(0).map((v, index) => (index + 1 +  bundle * bundleCount)).filter(page => page <= lastPage);
-
-  const handleClickLeft = () => {
-    const nexetPage = currentPage - 1;
-    setCurrentPage(nexetPage);
+export default function Pagination({ itemCount, bundle = 8, onChange, initPage = 1 }) {
+  const { currentPage, setCurrentPage, pages, lastPage } = usePagination({ itemCount, bundle, initPage });
+  const hanldeChangePage = (page) => {
+    if (page) {
+      onChange(page);
+      setCurrentPage(page);
+    }
   };
-
-  const handleClickRight = () => {
-    const nexetPage = currentPage + 1;
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handleClickPage = (page) => () => setCurrentPage(page);
+  const handleClickLeft = () => hanldeChangePage(currentPage - 1);
+  const handleClickRight = () => hanldeChangePage(currentPage + 1);
+  const handleClickPage = (page) => () => hanldeChangePage(page);
 
   useEffect(() => {
-    onChange(currentPage)
-  }, [currentPage])
-
+    if (initPage) {
+      setCurrentPage(+initPage);
+    }
+  }, [initPage]);
   return (
     <Row>
-      <Button disabled={currentPage === 1} onClick={handleClickLeft}>{'<'}</Button>
-      {pages.map(number => <Button onClick={handleClickPage(number)} $isActive={currentPage === number} key={number}>{number}</Button>)}
-      <Button disabled={currentPage === lastPage} onClick={handleClickRight}>{'>'}</Button>
+      <PageButton disabled={currentPage === 1} onClick={handleClickLeft}>
+        {'<'}
+      </PageButton>
+      {pages.map((number) => (
+        <PageButton onClick={handleClickPage(number)} $isActive={currentPage === number} key={number}>
+          {number}
+        </PageButton>
+      ))}
+      <PageButton disabled={currentPage === lastPage} onClick={handleClickRight}>
+        {'>'}
+      </PageButton>
     </Row>
-  )
+  );
 }
 
-const Button = styled.button`
+const PageButton = styled.button`
   width: 40px;
   height: 40px;
-  color: ${props => props.$isActive ? "var(--Brown-40)": "var(--Grayscale-40)"};
+  color: ${(props) => (props.$isActive ? 'var(--Brown-40)' : 'var(--Grayscale-40)')};
+  font-weight: ${(props) => (props.$isActive ? 'bold' : 400)};
   &:hover {
     &:not(:disabled) {
       color: var(--Braown-40);
-    }    
+      font-weight: bold;
+    }
   }
   &:disabled {
     cursor: default;

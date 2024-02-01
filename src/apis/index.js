@@ -27,6 +27,11 @@ export async function getSubjectApi(subjectId) {
   return response.data;
 }
 
+export async function getSubjectsApi(offset, sort) {
+  const response = await axios.get(`/subjects/?offset=${offset}&sort=${sort}`);
+  return response.data;
+}
+
 export async function deleteAnswerApi(answerId) {
   const response = await axios.delete(`/answers/${answerId}/`);
   return response.data;

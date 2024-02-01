@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   width: ${(props) => props.$size}px;
   height: ${(props) => props.$size}px;
+  background-color: var(--Grayscale-40);
   img {
     width: 100%;
     height: 100%;

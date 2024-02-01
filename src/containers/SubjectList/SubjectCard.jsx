@@ -1,36 +1,36 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import Avatar from "components/Avatar";
-import Column from "components/Column";
-import Row from "components/Row";
-import Text from "components/Text";
-import { MessageIcon } from "components/Icons";
+import Avatar from 'components/Avatar';
+import Column from 'components/Column';
+import Row from 'components/Row';
+import Text from 'components/Text';
+import { MessageIcon } from 'components/Icons';
 
-function SubjectCard({ subjectId, subjectName, questionCount }) {
+export default function SubjectCard({ imageSource, id, name, questionCount }) {
   return (
     <Card>
-      <Link to={`/post/${subjectId}`}>
+      <Link to={`/post/${id}`}>
         <Column $gap={12}>
-          <Avatar imgUrl="/assets/images/ProfileImg.png" size={60}/>
-          <Text>{subjectName}</Text>
+          <Avatar imgUrl={imageSource} size={60} />
+          <Text>{name}</Text>
         </Column>
         <Row $justifyContent="space-between">
           <Row $gap={4}>
-            <MessageIcon color="gray40"/>
+            <MessageIcon color="gray40" />
             <Text color="gray40">받은 질문</Text>
           </Row>
           <Text color="gray40">{questionCount}개</Text>
         </Row>
-      </Link>      
-    </Card> 
-  )
+      </Link>
+    </Card>
+  );
 }
 
 const Card = styled.li`
   width: 100%;
   max-width: 22rem;
-  height: 18.7rem;  
+  height: 18.7rem;
   border-radius: 16px;
   border: 1px solid var(--Grayscale-40);
   background-color: var(--Grayscale-10);
@@ -42,5 +42,4 @@ const Card = styled.li`
     height: 100%;
     padding: 2rem;
   }
-  
 `;

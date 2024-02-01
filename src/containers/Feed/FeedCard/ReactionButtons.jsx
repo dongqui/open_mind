@@ -6,6 +6,7 @@ import { useQuestiuons } from 'hooks/questionsHooks';
 
 export default function ReactionButtons({ likeCount, dislikeCount, questionId }) {
   const { updateQuestion } = useQuestiuons();
+
   const handleClickLikeOrDislike = (type) => async () => {
     const newQuestion = await postReactionApi(questionId, type);
     updateQuestion(questionId, newQuestion);

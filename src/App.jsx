@@ -7,6 +7,7 @@ import QuestionPage from './pages/QuestionPage';
 import AnswerPage from './pages/AnswerPage';
 import ListPage from 'pages/ListPage';
 import { UserProvider } from './contexts/userContext';
+import { SubjectProviderWithOutlet } from 'contexts/subjectContext';
 import Layout from './layouts';
 
 function App() {
@@ -19,8 +20,10 @@ function App() {
             <Routes>
               <Route element={<Layout />} />
               <Route path="/" exact element={<MainPage />} />
-              <Route path="/post/:subjectId" exact element={<QuestionPage />} />
-              <Route path="/post/:subjectId/answer" exact element={<AnswerPage />} />
+              <Route element={<SubjectProviderWithOutlet />}>
+                <Route path="/post/:subjectId" exact element={<QuestionPage />} />
+                <Route path="/post/:subjectId/answer" exact element={<AnswerPage />} />
+              </Route>
               <Route path="/list" exact element={<ListPage />} />
             </Routes>
           </BrowserRouter>

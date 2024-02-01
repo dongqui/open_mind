@@ -7,7 +7,7 @@ import { getQuestionsApi, fetchNext, postQuestionApi } from '../apis';
 
 const questionsAtom = atom({
   key: 'questionsAtom',
-  default: [],
+  default: {},
 });
 
 export function useQuestiuons() {
@@ -44,7 +44,7 @@ export function usePostQuestion() {
 
 export function useQuestionsOnInfiniteScroll(subjectId) {
   const { questions, setQuestions } = useQuestiuons();
-  const [bottomRef, isIntersecting] = useIntersectionObserver({});
+  const [observableRef, isIntersecting] = useIntersectionObserver({});
   const nextURLRef = useRef(null);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export function useQuestionsOnInfiniteScroll(subjectId) {
   }, [subjectId, isIntersecting]);
 
   return {
-    bottomRef,
+    observableRef,
     questions,
   };
 }

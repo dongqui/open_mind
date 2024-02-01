@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Row from 'components/Row';
 import Avatar from 'components/Avatar';
 import ReactionButtons from './ReactionButtons';
-import { useSubject } from 'hooks/useSubject';
+import { useSubject } from 'contexts/subjectContext';
 import Hr from 'components/Hr';
 import Column from 'components/Column';
 import Text from 'components/Text';
@@ -40,7 +40,7 @@ function Question({ content, createdAt }) {
 }
 
 function Answer({ content, isRejected }) {
-  const [subject] = useSubject();
+  const { subject } = useSubject();
   return (
     <Row $gap={12} $alignItems="start">
       <Avatar imgUrl={subject?.imageSource} size={32} />
