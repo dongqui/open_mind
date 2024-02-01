@@ -7,7 +7,7 @@ import { getQuestionsApi, fetchNext, postQuestionApi } from '../apis';
 
 const questionsAtom = atom({
   key: 'questionsAtom',
-  default: {},
+  default: [],
 });
 
 export function useQuestiuons() {
