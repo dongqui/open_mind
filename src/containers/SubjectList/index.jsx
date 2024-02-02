@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Pagination from 'components/Pagination';
 import SubjectCard from './SubjectCard';
 import { useSubjects } from 'hooks/useSubjects';
-import useInitSubjectsPagenation from 'hooks/useInitSubjectsPagenation';
+import useInitSubjectsParams from 'hooks/useInitSubjectsParams';
 
 export default function SubjectList() {
   const naviage = useNavigate();
-  const page = useInitSubjectsPagenation();
+  const { page } = useInitSubjectsParams();
   const { subjects } = useSubjects(page);
 
   const handleChangePage = (page) => naviage(`/list?page=${page}`);

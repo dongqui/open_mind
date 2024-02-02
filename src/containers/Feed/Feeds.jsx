@@ -3,22 +3,23 @@ import styled from 'styled-components';
 import Row from 'components/Row';
 import Text from 'components/Text';
 import QuestionFeed from './QuestionFeed';
-import AnswerFeed from './AnswerFeed.jsx';
+import AnswerFeed from './AnswerFeed';
 import Image from 'components/Image';
 import { useQuestionsOnInfiniteScroll } from 'hooks/questionsHooks';
 
-export default function FeedContainer({ subjectId, feedType }) {
+export default function Feeds({ subjectId, feedType }) {
   const { bottomRef, questions } = useQuestionsOnInfiniteScroll(subjectId);
 
   const FeedComponent = feedType === 'question' ? QuestionFeed : AnswerFeed;
   const questionCountText = questions?.length ? `${questions?.length}개의 질문이 있습니다` : '아직 질문이 업습니다.';
+  const isEmpty = !!questions?.length;
   return (
     <Container>
       <Row $gap={8}>
         <img src="/assets/images/message-icon.svg" alt="message-icon" />
         <Text typhography="body-1-bold">{questionCountText}</Text>
       </Row>
-      {questions?.length ? questions.map((question) => <FeedComponent key={question.id} question={question} />) : <Image src="/assets/images/noquestion.svg" alt="no questions" />}
+      {isEmpty ? questions.map((question) => <FeedComponent key={question.id} question={question} />) : <Image src="/assets/images/noquestion.svg" alt="no questions" />}
       <div ref={bottomRef} />
     </Container>
   );

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
-import FeedContainer from 'containers/Feed/FeedContainer';
+import Feeds from 'containers/Feed/Feeds';
 import Space from 'components/Space';
 import FloatingButton from 'components/Buttons/FloatingButton';
 import CreateAnswerModal from 'containers/modals/CreateAnswerModal';
@@ -16,7 +15,9 @@ export default function QuestionPage() {
     <>
       <FeedHeader subjectName={subject?.name} subjectImage={subject?.imageSource} />
       <Space size={54} />
-      <FeedContainer subjectId={subject?.id} feedType="question" />
+
+      <Feeds subjectId={subject?.id} feedType="question" />
+
       <FloatingButton $bottom={24} $right={24} onClick={() => setShowCreateAnswerModal(true)}>
         질문 작성하기
       </FloatingButton>

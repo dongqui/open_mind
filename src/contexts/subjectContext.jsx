@@ -10,13 +10,11 @@ const SubjectContext = createContext({
 export function SubjectProvider({ children }) {
   const { subjectId } = useParams();
   const [subject, setSubject] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getSubject() {
       const result = await getSubjectApi(subjectId);
       setSubject(result);
-      setIsLoading(false);
     }
 
     getSubject();

@@ -27,7 +27,7 @@ export function useSubjects(page = 1, sort = 'name') {
     }
 
     getSubjects();
-  }, [page]);
+  }, [page, sort]);
 
   return {
     isLoading,

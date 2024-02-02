@@ -29,7 +29,6 @@ const Container = styled.div`
 `;
 
 const DropdownMenuStyle = styled.ul`
-
   position: absolute;
   overflow: hidden;
   border-radius: 8px;
@@ -39,7 +38,7 @@ const DropdownMenuStyle = styled.ul`
 `;
 
 const DropdownItem = styled.li`
-  width: 100%;  
+  width: 100%;
   min-width: max-content;
   font-weight: 500;
   line-height: 18px;

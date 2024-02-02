@@ -1,4 +1,4 @@
-import FeedContainer from 'containers/Feed/FeedContainer';
+import Feeds from 'containers/Feed/Feeds';
 import Space from 'components/Space';
 import { useSubject } from 'contexts/subjectContext';
 import FeedHeader from 'containers/Feed/FeedHeader';
@@ -10,7 +10,7 @@ export default function AnswerPage() {
     <>
       <FeedHeader subjectName={subject?.name} subjectImage={subject?.imageSource} />
       <Space size={54} />
-      <FeedContainer subjectId={subject.id} feedType="answer" />
+      <Feeds subjectId={subject.id} feedType="answer" />
     </>
   );
 }
